@@ -1,0 +1,8 @@
+{
+  "name": "test-runner",
+  "description": "Run project tests, display results, and summarize failures with contextual guidance for fixing them",
+  "version": "1.0.0",
+  "author": {
+    "name": "onebit0fme"
+  }
+}
