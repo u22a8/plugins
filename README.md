@@ -35,6 +35,12 @@ Two skills:
 
 No setup required — the plugin connects to the hosted API at `qed.systems`.
 
+## GitHub Actions
+
+### score-docs
+
+Score markdown files on every PR. See [actions/score-docs](actions/score-docs/) for setup and configuration.
+
 ## License ███
 
 Apache-2.0
