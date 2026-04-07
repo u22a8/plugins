@@ -1,0 +1,111 @@
+# score-docs
+
+**Scores your documentation on every PR. Catches weak READMEs before your users do.**
+
+`onebit0fme/qed-plugins/actions/score-docs` runs on pull requests that touch markdown files. It posts a comment with per-trait quality scores — so you know exactly what's weak and why, before you merge.
+
+No signup. No API key. Two lines of YAML.
+
+## Setup
+
+Add this workflow file to your repo:
+
+```yaml
+# .github/workflows/qed-score.yml
+name: QED Score
+on:
+  pull_request:
+    paths: ['**/*.md']
+
+permissions:
+  pull-requests: write
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: onebit0fme/qed-plugins/actions/score-docs@main
+```
+
+That's it. The action posts a score comment on every PR that changes a markdown file.
+
+## Configuration
+
+```yaml
+- uses: onebit0fme/qed-plugins/actions/score-docs@main
+  with:
+    # Profile to score against. Default: qed.compelling-readme
+    # Options: qed.compelling-readme, qed.technical-writing,
+    #          qed.developer-landing-page, qed.puns
+    profile: qed.technical-writing
+
+    # Flag files that score below this threshold (0-100).
+    # Informational only — does not block merge.
+    threshold: 60
+
+    # Files to score. Default: all markdown files changed in the PR.
+    files: '**/*.md'
+```
+
+### Available profiles
+
+| Profile | Best for |
+|---|---|
+| `qed.compelling-readme` | Project READMEs, getting-started docs |
+| `qed.technical-writing` | Guides, references, tutorials |
+| `qed.developer-landing-page` | Landing pages targeting developers |
+| `qed.puns` | Commit messages. You know who you are. |
+
+## What the PR comment looks like
+
+The action posts a single comment per PR (updated on force-push, never duplicated):
+
+```
+QED Quality Score · qed.systems
+
+`README.md` scored against `qed.compelling-readme` — 67/100
+
+  Hook Speed              ████████████████░░░░   78  ●●● Strong positive
+  Problem Framing         ██████████████████░░   89  ●●● Strong positive
+  Value Proposition       █████████████░░░░░░░   64  ●●○ Developing
+  Copy-Pasteable Setup    ██████████████░░░░░░   68  ●●● Developing
+  ...
+```
+
+For each changed markdown file:
+
+- Composite score (0-100) with a visual bar
+- Per-trait breakdown with scores and zone labels
+- A flag if the file scores below your configured threshold
+
+The scores use the same format you see when curling the API directly — consistent whether you're in a PR or a terminal.
+
+## Use the scores
+
+A score on its own is just a number. What you do with it:
+
+- **Under 50 on a trait?** That's the specific thing to fix before merging.
+- **Composite below your threshold?** The comment flags it. Review before you ship.
+- **Trending up over time?** Your docs are getting better. The scores tell you.
+
+For tighter iteration — score a draft, improve it, rescore — the [QED Claude Code plugin](https://github.com/onebit0fme/qed-plugins/tree/main/plugins/qed) runs the same profiles interactively.
+
+## Why deterministic scores matter in CI
+
+Most "AI quality" tools use an LLM to judge output. That means different scores on the same content on different runs. You can't set a threshold you can trust.
+
+QED scores are deterministic — same content, same profile, same score every time. That's what makes a threshold meaningful in a CI context.
+
+QED also outperforms LLM-as-judge on correlation with human judgment, at a fraction of the cost and latency. [Details at qed.systems.](https://qed.systems)
+
+## Coming in v2
+
+- Merge blocking via required status checks
+- Inline annotations on specific lines
+- Score the PR description itself
+- Multiple profiles per run
+
+## License
+
+Apache-2.0
