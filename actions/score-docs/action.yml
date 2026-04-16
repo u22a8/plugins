@@ -1,47 +1,47 @@
-name: 'QED Score Docs'
-description: 'Score markdown files in PRs against QED resonance profiles. Posts per-trait quality scores as a PR comment.'
-author: 'qed.systems'
+name: "U+22A8 Score Docs"
+description: "Score markdown files in PRs against U+22A8 resonance models. Posts per-trait quality scores as a PR comment."
+author: "u22a8.ai"
 
 branding:
-  icon: 'check-circle'
-  color: 'green'
+    icon: "check-circle"
+    color: "green"
 
 inputs:
-  profile:
-    description: 'Profile handle to score against'
-    required: false
-    default: 'qed.compelling-readme'
-  threshold:
-    description: 'Composite score threshold (0-100) for flagging. No threshold if omitted.'
-    required: false
-    default: ''
-  files:
-    description: 'Glob pattern for files to score'
-    required: false
-    default: '**/*.md'
-  github-token:
-    description: 'GitHub token for posting PR comments. Defaults to the built-in GITHUB_TOKEN.'
-    required: false
-    default: ''
+    profile:
+        description: "Model handle to score against"
+        required: false
+        default: "u22a8.compelling-readme"
+    threshold:
+        description: "Composite score threshold (0-100) for flagging. No threshold if omitted."
+        required: false
+        default: ""
+    files:
+        description: "Glob pattern for files to score"
+        required: false
+        default: "**/*.md"
+    github-token:
+        description: "GitHub token for posting PR comments. Defaults to the built-in GITHUB_TOKEN."
+        required: false
+        default: ""
 
 outputs:
-  scores:
-    description: 'JSON blob of all file scores'
-    value: ${{ steps.score.outputs.scores }}
-  below-threshold:
-    description: 'true if any file scored below threshold'
-    value: ${{ steps.score.outputs.below_threshold }}
+    scores:
+        description: "JSON blob of all file scores"
+        value: ${{ steps.score.outputs.scores }}
+    below-threshold:
+        description: "true if any file scored below threshold"
+        value: ${{ steps.score.outputs.below_threshold }}
 
 runs:
-  using: 'composite'
-  steps:
-    - name: Score docs
-      id: score
-      shell: bash
-      env:
-        GH_TOKEN: ${{ inputs.github-token || github.token }}
-        QED_PROFILE: ${{ inputs.profile }}
-        QED_THRESHOLD: ${{ inputs.threshold }}
-        QED_FILES: ${{ inputs.files }}
-        QED_API: 'https://qed.systems'
-      run: ${{ github.action_path }}/score-docs.sh
+    using: "composite"
+    steps:
+        - name: Score docs
+          id: score
+          shell: bash
+          env:
+              GH_TOKEN: ${{ inputs.github-token || github.token }}
+              U22A8_PROFILE: ${{ inputs.profile }}
+              U22A8_THRESHOLD: ${{ inputs.threshold }}
+              U22A8_FILES: ${{ inputs.files }}
+              U22A8_API: "https://u22a8.ai"
+          run: ${{ github.action_path }}/score-docs.sh

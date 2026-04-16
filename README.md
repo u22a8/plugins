@@ -1,39 +1,39 @@
-# qed-plugins
+# U+22A8 plugins
 
-Claude Code plugin marketplace for [qed.systems](https://qed.systems) — score and improve content with resonance profiles.
+Claude Code plugin marketplace for [u22a8.ai](https://u22a8.ai) — score and improve content with resonance models.
 
-> A resonance profile is a standard of judgment, learned from examples, that can score any content — turning subjective quality into something measurable.
+> A resonance model is a standard of judgment, learned from examples, that can score any content — turning subjective quality into something measurable.
 
 ## Quick start █░░
 
 ```bash
 # Add the marketplace
-/plugin marketplace add onebit0fme/qed-plugins
+/plugin marketplace add u22a8/plugins
 
-# Install the qed plugin
-/plugin install qed@qed-plugins
+# Install the u22a8 plugin
+/plugin install u22a8@u22a8-plugins
 ```
 
 ## Plugins ██░
 
-### qed
+### u22a8
 
-Score and improve content against resonance profiles on qed.systems.
+Score and improve content against resonance models on u22a8.ai.
 
 Two skills:
 
-- **`/qed:evaluate`** — Measure how content performs on specific traits. Scores each trait 0–100 with a composite. Measurement only, no edits.
-- **`/qed:improve`** — Full editing loop: baseline score, diagnose weaknesses, make targeted edits, re-evaluate, report deltas. Iterates until you're satisfied.
+- **`/u22a8:evaluate`** — Measure how content performs on specific traits. Scores each trait 0–100 with a composite. Measurement only, no edits.
+- **`/u22a8:improve`** — Full editing loop: baseline score, diagnose weaknesses, make targeted edits, re-evaluate, report deltas. Iterates until you're satisfied.
 
 ```bash
 # Score a file
-/qed:evaluate my-draft.md
+/u22a8:evaluate my-draft.md
 
-# Improve a file against profile traits
-/qed:improve my-draft.md
+# Improve a file against model traits
+/u22a8:improve my-draft.md
 ```
 
-No setup required — the plugin connects to the hosted API at `qed.systems`.
+No setup required — the plugin connects to the hosted API at `u22a8.ai`.
 
 ## GitHub Actions
 

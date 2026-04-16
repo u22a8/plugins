@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "qed": {
-      "type": "http",
-      "url": "https://qed.systems/mcp"
-    }
-  }
-}

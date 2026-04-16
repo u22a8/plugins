@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# QED Score Docs — GitHub Action
-# Scores markdown files changed in a PR against a QED resonance profile.
+# U+22A8 Score Docs — GitHub Action
+# Scores markdown files changed in a PR against a U+22A8 resonance model.
 # Posts (or updates) a PR comment with per-trait scores.
 
-MARKER="<!-- qed-score -->"
-API="${QED_API:-https://qed.systems}"
-PROFILE="${QED_PROFILE:-qed.compelling-readme}"
-THRESHOLD="${QED_THRESHOLD:-}"
+MARKER="<!-- u22a8-score -->"
+API="${U22A8_API:-https://u22a8.ai}"
+PROFILE="${U22A8_PROFILE:-u22a8.compelling-readme}"
+THRESHOLD="${U22A8_THRESHOLD:-}"
 REPO="${GITHUB_REPOSITORY:-}"
 
 # Resolve PR number from event payload
@@ -18,7 +18,7 @@ if [[ -f "${GITHUB_EVENT_PATH:-}" ]]; then
 fi
 
 if [[ -z "${PR_NUMBER:-}" ]]; then
-    echo "::warning::Not a pull request event — skipping QED scoring."
+    echo "::warning::Not a pull request event — skipping U+22A8 scoring."
     exit 0
 fi
 
@@ -53,7 +53,7 @@ echo "Found ${#MD_FILES[@]} markdown file(s) to score against ${PROFILE}."
 
 # Score each file and build comment body
 COMMENT_BODY="${MARKER}"$'\n'
-COMMENT_BODY+="**QED Quality Score** · [qed.systems](https://qed.systems)"$'\n\n'
+COMMENT_BODY+="**U+22A8 Quality Score** · [u22a8.ai](https://u22a8.ai)"$'\n\n'
 
 SCORES_JSON="{}"
 BELOW_THRESHOLD="false"
@@ -63,13 +63,13 @@ for file in "${MD_FILES[@]}"; do
 
     CONTENT=$(cat "$file")
 
-    # Call QED API with tracking headers
+    # Call U+22A8 API with tracking headers
     RESPONSE=$(curl -sf "${API}/p/${PROFILE}" \
         -H "Content-Type: application/json" \
         -H "Accept: application/json" \
-        -H "User-Agent: qed-score-docs/1.0 (GitHub Action)" \
-        -H "X-QED-Source: github-action" \
-        -H "X-QED-Repo: ${REPO}" \
+        -H "User-Agent: u22a8-score-docs/1.0 (GitHub Action)" \
+        -H "X-U22A8-Source: github-action" \
+        -H "X-U22A8-Repo: ${REPO}" \
         -d "$(jq -n --arg content "$CONTENT" '{"content": $content}')" \
         2>/dev/null) || {
         echo "::warning::Failed to score ${file} — API returned an error."
@@ -87,9 +87,9 @@ for file in "${MD_FILES[@]}"; do
     PLAIN_RESPONSE=$(curl -sf "${API}/p/${PROFILE}" \
         -H "Content-Type: application/json" \
         -H "Accept: text/plain" \
-        -H "User-Agent: qed-score-docs/1.0 (GitHub Action)" \
-        -H "X-QED-Source: github-action" \
-        -H "X-QED-Repo: ${REPO}" \
+        -H "User-Agent: u22a8-score-docs/1.0 (GitHub Action)" \
+        -H "X-U22A8-Source: github-action" \
+        -H "X-U22A8-Repo: ${REPO}" \
         -d "$(jq -n --arg content "$CONTENT" '{"content": $content}')" \
         2>/dev/null) || PLAIN_RESPONSE=""
 

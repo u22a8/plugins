@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "u22a8": {
+            "type": "http",
+            "url": "https://u22a8.ai/mcp"
+        }
+    }
+}

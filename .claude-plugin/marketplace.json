@@ -1,26 +1,26 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-    "name": "qed-plugins",
+    "name": "u22a8-plugins",
     "owner": {
-        "name": "qed.systems",
+        "name": "u22a8.ai",
         "email": "yanchynskyy@pm.me"
     },
     "metadata": {
-        "description": "Claude Code plugins for scoring, evaluating, and improving content with resonance profiles on qed.systems",
+        "description": "Claude Code plugins for scoring, evaluating, and improving content with resonance models on u22a8.ai",
         "pluginRoot": "./plugins"
     },
     "plugins": [
         {
-            "name": "qed",
-            "source": "./plugins/qed",
-            "description": "Score and compare content against information resonance profiles on qed.systems",
+            "name": "u22a8",
+            "source": "./plugins/u22a8",
+            "description": "Score and compare content against information resonance models on u22a8.ai",
             "version": "0.1.0",
             "category": "content-quality",
             "tags": [
                 "scoring",
                 "writing",
                 "content-quality",
-                "resonance-profiles"
+                "resonance-models"
             ]
         }
     ]

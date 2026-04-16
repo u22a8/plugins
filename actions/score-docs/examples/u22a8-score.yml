@@ -1,0 +1,25 @@
+# .github/workflows/u22a8-score.yml
+#
+# Score markdown files on every PR against a U+22A8 resonance model.
+# Posts a comment with per-trait quality scores.
+#
+# More info: https://u22a8.ai
+
+name: U+22A8 Score
+
+on:
+    pull_request:
+        paths: ["**/*.md"]
+
+permissions:
+    pull-requests: write
+
+jobs:
+    score:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: u22a8/plugins/actions/score-docs@main
+              # with:
+              #   profile: u22a8.compelling-readme    # default
+              #   threshold: 60                      # flag files below this score

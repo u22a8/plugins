@@ -2,7 +2,7 @@
 
 **Scores your documentation on every PR. Catches weak READMEs before your users do.**
 
-`onebit0fme/qed-plugins/actions/score-docs` runs on pull requests that touch markdown files. It posts a comment with per-trait quality scores — so you know exactly what's weak and why, before you merge.
+`u22a8/plugins/actions/score-docs` runs on pull requests that touch markdown files. It posts a comment with per-trait quality scores — so you know exactly what's weak and why, before you merge.
 
 No signup. No API key. Two lines of YAML.
 
@@ -11,8 +11,8 @@ No signup. No API key. Two lines of YAML.
 Add this workflow file to your repo:
 
 ```yaml
-# .github/workflows/qed-score.yml
-name: QED Score
+# .github/workflows/u22a8-score.yml
+name: U+22A8 Score
 on:
   pull_request:
     paths: ['**/*.md']
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: onebit0fme/qed-plugins/actions/score-docs@main
+      - uses: u22a8/plugins/actions/score-docs@main
 ```
 
 That's it. The action posts a score comment on every PR that changes a markdown file.
@@ -33,12 +33,12 @@ That's it. The action posts a score comment on every PR that changes a markdown 
 ## Configuration
 
 ```yaml
-- uses: onebit0fme/qed-plugins/actions/score-docs@main
+- uses: u22a8/plugins/actions/score-docs@main
   with:
-    # Profile to score against. Default: qed.compelling-readme
-    # Options: qed.compelling-readme, qed.technical-writing,
-    #          qed.developer-landing-page, qed.puns
-    profile: qed.technical-writing
+    # Model to score against. Default: u22a8.compelling-readme
+    # Options: u22a8.compelling-readme, u22a8.technical-writing,
+    #          u22a8.developer-landing-page, u22a8.puns
+    profile: u22a8.technical-writing
 
     # Flag files that score below this threshold (0-100).
     # Informational only — does not block merge.
@@ -48,23 +48,23 @@ That's it. The action posts a score comment on every PR that changes a markdown 
     files: '**/*.md'
 ```
 
-### Available profiles
+### Available models
 
-| Profile | Best for |
+| Model | Best for |
 |---|---|
-| `qed.compelling-readme` | Project READMEs, getting-started docs |
-| `qed.technical-writing` | Guides, references, tutorials |
-| `qed.developer-landing-page` | Landing pages targeting developers |
-| `qed.puns` | Commit messages. You know who you are. |
+| `u22a8.compelling-readme` | Project READMEs, getting-started docs |
+| `u22a8.technical-writing` | Guides, references, tutorials |
+| `u22a8.developer-landing-page` | Landing pages targeting developers |
+| `u22a8.puns` | Commit messages. You know who you are. |
 
 ## What the PR comment looks like
 
 The action posts a single comment per PR (updated on force-push, never duplicated):
 
 ```
-QED Quality Score · qed.systems
+U+22A8 Quality Score · u22a8.ai
 
-`README.md` scored against `qed.compelling-readme` — 67/100
+`README.md` scored against `u22a8.compelling-readme` — 67/100
 
   Hook Speed              ████████████████░░░░   78  ●●● Strong positive
   Problem Framing         ██████████████████░░   89  ●●● Strong positive
@@ -89,22 +89,22 @@ A score on its own is just a number. What you do with it:
 - **Composite below your threshold?** The comment flags it. Review before you ship.
 - **Trending up over time?** Your docs are getting better. The scores tell you.
 
-For tighter iteration — score a draft, improve it, rescore — the [QED Claude Code plugin](https://github.com/onebit0fme/qed-plugins/tree/main/plugins/qed) runs the same profiles interactively.
+For tighter iteration — score a draft, improve it, rescore — the [U+22A8 Claude Code plugin](https://github.com/u22a8/plugins/tree/main/plugins/u22a8) runs the same models interactively.
 
 ## Why deterministic scores matter in CI
 
 Most "AI quality" tools use an LLM to judge output. That means different scores on the same content on different runs. You can't set a threshold you can trust.
 
-QED scores are deterministic — same content, same profile, same score every time. That's what makes a threshold meaningful in a CI context.
+U+22A8 scores are deterministic — same content, same profile, same score every time. That's what makes a threshold meaningful in a CI context.
 
-QED also outperforms LLM-as-judge on correlation with human judgment, at a fraction of the cost and latency. [Details at qed.systems.](https://qed.systems)
+U+22A8 also outperforms LLM-as-judge on correlation with human judgment, at a fraction of the cost and latency. [Details at u22a8.ai.](https://u22a8.ai)
 
 ## Coming in v2
 
 - Merge blocking via required status checks
 - Inline annotations on specific lines
 - Score the PR description itself
-- Multiple profiles per run
+- Multiple models per run
 
 ## License
 

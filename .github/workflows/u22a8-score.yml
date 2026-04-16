@@ -1,0 +1,15 @@
+# .github/workflows/u22a8-score.yml
+name: U+22A8 Score
+on:
+    pull_request:
+        paths: ["**/*.md"]
+
+permissions:
+    pull-requests: write
+
+jobs:
+    score:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: u22a8/plugins/actions/score-docs@main

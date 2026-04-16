@@ -1,20 +1,20 @@
 ---
 name: improve
-description: Evaluate content, identify weaknesses, make targeted edits, and re-evaluate to confirm improvement. Use when the user wants to improve content against resonance profile traits.
+description: Evaluate content, identify weaknesses, make targeted edits, and re-evaluate to confirm improvement. Use when the user wants to improve content against resonance model traits.
 user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Bash(qed MCP tools)
+allowed-tools: Read, Write, Edit, Glob, Bash(u22a8 MCP tools)
 argument-hint: [file-or-text]
 ---
 
 # Improve Content
 
-A resonance profile is a standard of judgment, learned from examples, that can score any content. Each profile has traits — distinct dimensions of quality — and scores content 0–100 per trait. Scores are deterministic and instant.
+A resonance model is a standard of judgment, learned from examples, that can score any content. Each model has traits — distinct dimensions of quality — and scores content 0–100 per trait. Scores are deterministic and instant.
 
 Evaluate content, analyze weaknesses, make targeted edits, and re-evaluate to confirm improvement.
 
 ## Core Flow
 
-1. **Identify content and profile.** Read content from file ($ARGUMENTS), URL, or conversation. URLs passed to `score` are fetched automatically. If the user specifies a profile, use it. Otherwise, call `list_profiles` and pick the most relevant one based on context, or let the user choose. Then confirm which traits to optimize for using `list_traits`.
+1. **Identify content and model.** Read content from file ($ARGUMENTS), URL, or conversation. URLs passed to `score` are fetched automatically. If the user specifies a model, use it. Otherwise, call `list_profiles` and pick the most relevant one based on context, or let the user choose. Then confirm which traits to optimize for using `list_traits`.
 
 2. **Baseline evaluation.** Call `score` with the current content. Record per-trait scores, zones, and headroom. Present the baseline — highlight which traits have the most headroom (furthest from "solid" threshold).
 
@@ -71,7 +71,7 @@ Evaluate content, analyze weaknesses, make targeted edits, and re-evaluate to co
 
 User: "Improve my blog post for flow and storytelling"
 
-1. No profile specified and content is a blog post — call `list_profiles`, pick the most fitting profile or ask the user
+1. No model specified and content is a blog post — call `list_profiles`, pick the most fitting model or ask the user
 2. Baseline: Flow=45 (Developing, headroom 12), Storytelling=62 (Solid), Composite=53
 3. Analyze: "Flow has the most headroom. The third paragraph jumps abruptly from personal anecdote to technical explanation without transition."
 4. Edit: Add transitional sentences, restructure the opening to establish the narrative thread
