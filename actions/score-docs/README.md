@@ -38,7 +38,7 @@ That's it. The action posts a score comment on every PR that changes a markdown 
     # Model to score against. Default: u22a8.compelling-readme
     # Options: u22a8.compelling-readme, u22a8.technical-writing,
     #          u22a8.developer-landing-page, u22a8.puns
-    profile: u22a8.technical-writing
+    model: u22a8.technical-writing
 
     # Flag files that score below this threshold (0-100).
     # Informational only — does not block merge.
@@ -95,7 +95,7 @@ For tighter iteration — score a draft, improve it, rescore — the [U+22A8 Cla
 
 Most "AI quality" tools use an LLM to judge output. That means different scores on the same content on different runs. You can't set a threshold you can trust.
 
-U+22A8 scores are deterministic — same content, same profile, same score every time. That's what makes a threshold meaningful in a CI context.
+U+22A8 scores are deterministic — same content, same model, same score every time. That's what makes a threshold meaningful in a CI context.
 
 U+22A8 also outperforms LLM-as-judge on correlation with human judgment, at a fraction of the cost and latency. [Details at u22a8.ai.](https://u22a8.ai)
 

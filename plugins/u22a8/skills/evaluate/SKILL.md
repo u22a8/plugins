@@ -1,6 +1,6 @@
 ---
 name: evaluate
-description: Score content against resonance model traits. Use when the user wants to measure how content performs on specific traits.
+description: Score content against scoring model traits. Use when the user wants to measure how content performs on specific traits.
 user-invocable: true
 allowed-tools: Read, Glob, Bash(u22a8 MCP tools)
 argument-hint: [file-or-text]
@@ -8,7 +8,7 @@ argument-hint: [file-or-text]
 
 # Evaluate Content
 
-A resonance model is a standard of judgment, learned from examples, that can score any content. Each model has traits — distinct dimensions of quality — and scores content 0–100 per trait. Scores are deterministic and instant.
+A scoring model is a standard of judgment, learned from examples, that can score any content. Each model has traits — distinct dimensions of quality — and scores content 0–100 per trait. Scores are deterministic and instant.
 
 Score content against specific traits. Measurement only — no edits.
 
@@ -16,7 +16,7 @@ Score content against specific traits. Measurement only — no edits.
 
 1. **Identify content to score.** Read from a file path ($ARGUMENTS), a URL, a selection, or conversation context. URLs (http/https) can be passed directly to `score` — they are fetched and text-extracted automatically. If unclear, ask the user what content to evaluate.
 
-2. **Determine the model.** If the user specifies a model, use it. Otherwise, call `list_profiles` to see what's available and either pick the most relevant one based on context (e.g. a README → `u22a8.compelling-readme`) or present the options and let the user choose.
+2. **Determine the model.** If the user specifies a model, use it. Otherwise, call `list_models` to see what's available and either pick the most relevant one based on context (e.g. a README → `u22a8.compelling-readme`) or present the options and let the user choose.
 
 3. **Identify traits.** Use `list_traits` to show the model's traits. Suggest relevant ones based on context, but confirm the user's choice. Do NOT silently evaluate all traits unless the user explicitly asks for "all".
 

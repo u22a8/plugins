@@ -1,8 +1,8 @@
 # U+22A8 plugins
 
-Claude Code plugin marketplace for [u22a8.ai](https://u22a8.ai) — score and improve content with resonance models.
+Claude Code plugin marketplace for [u22a8.ai](https://u22a8.ai) — score and improve content with scoring models.
 
-> A resonance model is a standard of judgment, learned from examples, that can score any content — turning subjective quality into something measurable.
+> A scoring model is a standard of judgment, learned from examples, that can score any content — turning subjective quality into something measurable.
 
 ## Quick start █░░
 
@@ -18,7 +18,7 @@ Claude Code plugin marketplace for [u22a8.ai](https://u22a8.ai) — score and im
 
 ### u22a8
 
-Score and improve content against resonance models on u22a8.ai.
+Score and improve content against scoring models on u22a8.ai.
 
 Two skills:
 
