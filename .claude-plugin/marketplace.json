@@ -6,21 +6,21 @@
         "email": "yanchynskyy@pm.me"
     },
     "metadata": {
-        "description": "Claude Code plugins for scoring, evaluating, and improving content with resonance models on u22a8.ai",
+        "description": "Claude Code plugins for scoring, evaluating, and improving content with scoring models on u22a8.ai",
         "pluginRoot": "./plugins"
     },
     "plugins": [
         {
             "name": "u22a8",
             "source": "./plugins/u22a8",
-            "description": "Score and compare content against information resonance models on u22a8.ai",
+            "description": "Score and compare content against scoring models on u22a8.ai",
             "version": "0.1.0",
             "category": "content-quality",
             "tags": [
                 "scoring",
                 "writing",
                 "content-quality",
-                "resonance-models"
+                "scoring-models"
             ]
         }
     ]

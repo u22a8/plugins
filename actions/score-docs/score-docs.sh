@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # U+22A8 Score Docs — GitHub Action
-# Scores markdown files changed in a PR against a U+22A8 resonance model.
+# Scores markdown files changed in a PR against a U+22A8 scoring model.
 # Posts (or updates) a PR comment with per-trait scores.
 
 MARKER="<!-- u22a8-score -->"
 API="${U22A8_API:-https://u22a8.ai}"
-PROFILE="${U22A8_PROFILE:-u22a8.compelling-readme}"
+MODEL="${U22A8_MODEL:-u22a8.compelling-readme}"
 THRESHOLD="${U22A8_THRESHOLD:-}"
 REPO="${GITHUB_REPOSITORY:-}"
 
@@ -49,7 +49,7 @@ if [[ ${#MD_FILES[@]} -eq 0 ]]; then
     exit 0
 fi
 
-echo "Found ${#MD_FILES[@]} markdown file(s) to score against ${PROFILE}."
+echo "Found ${#MD_FILES[@]} markdown file(s) to score against ${MODEL}."
 
 # Score each file and build comment body
 COMMENT_BODY="${MARKER}"$'\n'
@@ -64,7 +64,7 @@ for file in "${MD_FILES[@]}"; do
     CONTENT=$(cat "$file")
 
     # Call U+22A8 API with tracking headers
-    RESPONSE=$(curl -sf "${API}/p/${PROFILE}" \
+    RESPONSE=$(curl -sf "${API}/m/${MODEL}" \
         -H "Content-Type: application/json" \
         -H "Accept: application/json" \
         -H "User-Agent: u22a8-score-docs/1.0 (GitHub Action)" \
@@ -84,7 +84,7 @@ for file in "${MD_FILES[@]}"; do
     fi
 
     # Get plain-text formatted output for the comment
-    PLAIN_RESPONSE=$(curl -sf "${API}/p/${PROFILE}" \
+    PLAIN_RESPONSE=$(curl -sf "${API}/m/${MODEL}" \
         -H "Content-Type: application/json" \
         -H "Accept: text/plain" \
         -H "User-Agent: u22a8-score-docs/1.0 (GitHub Action)" \
@@ -94,7 +94,7 @@ for file in "${MD_FILES[@]}"; do
         2>/dev/null) || PLAIN_RESPONSE=""
 
     # Build file section
-    COMMENT_BODY+="\`${file}\` scored against \`${PROFILE}\` — **${COMPOSITE}/100**"$'\n\n'
+    COMMENT_BODY+="\`${file}\` scored against \`${MODEL}\` — **${COMPOSITE}/100**"$'\n\n'
 
     if [[ -n "$PLAIN_RESPONSE" ]]; then
         COMMENT_BODY+='```'$'\n'

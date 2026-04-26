@@ -1,5 +1,5 @@
 name: "U+22A8 Score Docs"
-description: "Score markdown files in PRs against U+22A8 resonance models. Posts per-trait quality scores as a PR comment."
+description: "Score markdown files in PRs against U+22A8 scoring models. Posts per-trait quality scores as a PR comment."
 author: "u22a8.ai"
 
 branding:
@@ -7,7 +7,7 @@ branding:
     color: "green"
 
 inputs:
-    profile:
+    model:
         description: "Model handle to score against"
         required: false
         default: "u22a8.compelling-readme"
@@ -40,7 +40,7 @@ runs:
           shell: bash
           env:
               GH_TOKEN: ${{ inputs.github-token || github.token }}
-              U22A8_PROFILE: ${{ inputs.profile }}
+              U22A8_MODEL: ${{ inputs.model }}
               U22A8_THRESHOLD: ${{ inputs.threshold }}
               U22A8_FILES: ${{ inputs.files }}
               U22A8_API: "https://u22a8.ai"

@@ -1,6 +1,6 @@
 {
     "name": "u22a8",
-    "description": "Score and compare content against resonance models on u22a8.ai",
+    "description": "Score and compare content against scoring models on u22a8.ai",
     "version": "0.1.0",
     "author": {
         "name": "u22a8.ai"
@@ -8,5 +8,5 @@
     "homepage": "https://u22a8.ai",
     "repository": "https://github.com/u22a8/plugins",
     "license": "Apache-2.0",
-    "keywords": ["scoring", "writing", "content-quality", "resonance-models"]
+    "keywords": ["scoring", "writing", "content-quality", "scoring-models"]
 }
